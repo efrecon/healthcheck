@@ -2,13 +2,16 @@
 
 alltags() {
     IMG="$1"
-    local alltags=
-    local rawtags=
-    rawtags=$(curl -qsL "https://github.com/docker-library/official-images/raw/master/library/${IMG}" | grep "Tags:"|sed "s/Tags: //g")
-    while read -r line; do
-        for tag in $(echo "$line" | sed "s/,/ /g"); do
-            alltags="$alltags $tag"
+    curl -qsL "https://github.com/docker-library/official-images/raw/master/library/${IMG}" | 
+        grep "Tags:" |
+        sed "s/Tags: //g" |
+        while read -r line; do
+            for tag in ${line//,/ }; do
+                echo "$tag"
+            done
         done
-    done < <(echo "$rawtags")
-    echo "$alltags"|sed "s/^ //g"
+}
+
+inverse() {
+    awk '{a[i++]=$0} END {for (j=i-1; j>=0;) print a[j--] }'
 }
