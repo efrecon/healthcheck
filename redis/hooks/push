@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# shellcheck disable=SC1090
+. "$(dirname "$0")/alltags.sh"
+
+IMG=$(basename $DOCKER_REPO)
+for tag in $(alltags "$IMG"); do
+    echo "======================= Pushing ${IMG}:$tag"
+    docker push "${DOCKER_REPO}:$tag"
+done
