@@ -1,0 +1,3 @@
+[submodule "postgres/hooks/reg-tags"]
+	path = postgres/hooks/reg-tags
+	url = https://github.com/efrecon/reg-tags.git
