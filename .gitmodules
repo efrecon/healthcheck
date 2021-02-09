@@ -4,3 +4,6 @@
 [submodule "redis/hooks/reg-tags"]
 	path = redis/hooks/reg-tags
 	url = https://github.com/efrecon/reg-tags.git
+[submodule "rabbitmq/hooks/reg-tags"]
+	path = rabbitmq/hooks/reg-tags
+	url = https://github.com/efrecon/reg-tags.git
