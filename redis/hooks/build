@@ -9,7 +9,11 @@ token=$(img_auth "$DOCKER_REPO")
 # For all tags of the original image (as in library image) that this image
 # builds upon, rebuild only if relevant. We use the OCI revision annotation to
 # store/detect whenever it is necessary to rebuild.
-for tag in $(img_tags --filter '^[0-9]+(\.[0-9]+)+(-alpine[0-9]+(\.[0-9]+)+)?$' --verbose -- "$(basename "$DOCKER_REPO")"); do
+for tag in $(img_tags \
+                --filter '^[0-9]+(\.[0-9]+)+(-alpine[0-9]+(\.[0-9]+)+)?$' \
+                --verbose \
+                -- \
+                "$(basename "$DOCKER_REPO")"); do
     # Get the revision out of the org.opencontainers.image.revision label, this
     # will be the label where we store information about this repo (it cannot be
     # the tag, since we tag as the base image).

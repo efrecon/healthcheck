@@ -1,9 +1,10 @@
 # Effortless `HEALTHCHECK` capable redis
 
-This image is to capture all possible (now, then and future) tags of the redis
-image and to arrange for creating an equivalent image with the same tag, but
-`HEALTHCHECK`-capabilities built in.  To check for available tags, refer to the
-official [image](https://hub.docker.com/_/redis/).
+This [image][https://hub.docker.com/r/efrecon/redis] is to capture all possible
+(now, then and future) tags of the redis image and to arrange for creating an
+equivalent image with the same tag, but `HEALTHCHECK`-capabilities built in.  To
+check for available tags, refer to the official
+[image](https://hub.docker.com/_/redis/).
 
 ## How
 
@@ -30,4 +31,9 @@ and image building will only happen for images that have a different checksum.
 New images from the original image will not yet exist and have an empty label,
 thus triggering the build process.
 
+Changes to the main [redis] are detected through a gitlab project running
+[talonneur] and storing relevant sums using [snippets].
+
   [revision]: https://github.com/opencontainers/image-spec/blob/master/annotations.md#pre-defined-annotation-keys
+  [talonneur]: https://github.com/YanziNetworks/talonneur
+  [snippet]: https://docs.gitlab.com/ee/user/snippets.html#project-snippets
