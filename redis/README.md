@@ -1,8 +1,8 @@
-# Effortless HEALTHCHECK capable redis
+# Effortless `HEALTHCHECK` capable redis
 
 This image is to capture all possible (now, then and future) tags of the redis
 image and to arrange for creating an equivalent image with the same tag, but
-HEALTHCHECK-capabities built in.  To check for available tags, refer to the
+`HEALTHCHECK`-capabilities built in.  To check for available tags, refer to the
 official [image](https://hub.docker.com/_/redis/).
 
 ## How
@@ -22,3 +22,12 @@ of the official redis library so that it will recreate all tags and images as
 soon as anything new has been pushed to it. This is less resource intensive as
 it sounds as Docker will typically cache most layers. Consequently, out of all
 the tags that are extracted each time, only a few layers are reconstructed.
+
+In addition, the implementation uses the OCI label
+[`org.opencontainers.image.revision`][revision] to detect changes. The label
+will be set to the relevant git revision in this repository. Change detection
+and image building will only happen for images that have a different checksum.
+New images from the original image will not yet exist and have an empty label,
+thus triggering the build process.
+
+  [revision]: https://github.com/opencontainers/image-spec/blob/master/annotations.md#pre-defined-annotation-keys
