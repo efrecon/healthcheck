@@ -17,7 +17,7 @@ for tag in $(img_tags \
     # Get the revision out of the org.opencontainers.image.revision label, this
     # will be the label where we store information about this repo (it cannot be
     # the tag, since we tag as the base image).
-    revision=$(img_labels --trace --token "$token" -- "$DOCKER_REPO" "$tag" |
+    revision=$(img_labels --token "$token" -- "$(img_unqualify "$DOCKER_REPO")" "$tag" |
                 grep "^org.opencontainers.image.revision" |
                 sed -E 's/^org.opencontainers.image.revision=(.+)/\1/')
     # If the revision is different from the source commit (including empty,
